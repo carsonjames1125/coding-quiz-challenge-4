@@ -43,5 +43,11 @@ var questionsTest = {
 
 var timerBegin = 100; // sets the beginning timer to 100 sec
 
-// more game variables
+// more game variables to help with functions
 
+var questionNumber = 0;
+var timerCount = timerBegin;
+var score = 0;
+var gameOver = true;
+
+// need to begin the functions of the game. 
