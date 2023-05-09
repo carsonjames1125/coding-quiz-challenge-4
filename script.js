@@ -23,7 +23,25 @@ var clearHighScoreBtn = document.querySelector('#clearhighscores');
 // generate questions for quiz
 
 var questionsTest = {
-    questions: [
-
+    questions: [ //questions for the quix that are to be display in order.
+        'Which document type is used to give logic to a webpage?',
+        'What is the syntax called in javascript that displays a pop up in the browser about an error or notification?',
+        'Where are you supposed to reference javascript in the HTML document?',
+        'What syntax is used to create text in javascript that displays in the webpage?',
+        'What does ! mean in javascript?',
+    ],
+    answers: [ // answers to the questions above the correct answer is displayed within the array. 
+        ['style.css', 'rightanswer:script.jss', 'index.html', 'README.md'],
+        ['correctanwer:.alert', '.window', '.confirm', '.document'],
+        ['top of the document', 'In the CSS', 'in the javascript', 'correctanswer: at the bottom'],
+        ['.script', '.link', 'correctanswer: .text', '.val()'],
+        ['stop', 'correctanswer: not', 'go back', 'stop function']
     ]
 }
+
+// need to begin the game setup and varibale identification
+
+var timerBegin = 100; // sets the beginning timer to 100 sec
+
+// more game variables
+
