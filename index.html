@@ -10,23 +10,49 @@
 
 <!-- header for highscores and timer sections -->
 <header id="header">
-    <button class="highscores" id="scores">View Highscores</button>
+    <button id="viewhighscoresbtn">View Highscores</button>
 </header>
 <div id="timer">TIMER: <span id="time-left">100</span></div>
 
 <!-- main page -->
-<div id="title-main">CODING QUIZ: JAVASCRIPT</div>
-<div class="main" id="start">
-    <p id="info">Try to answer as many of the questions as you can. The faster you answer the better your score will be. Be careful, answer incorrectly, and time will be deducted. GOOD LUCK!!</p>
-</div>
+<main> 
+    <h1 id="title-main">CODING QUIZ: JAVASCRIPT</h1>
+    <p id="instructions">Try to answer as many of the questions as you can. The faster you answer the better your score will be. Be careful, answer incorrectly, and time will be deducted. GOOD LUCK!!</p>
 <!-- start button -->
-<button id="startbtn">Start Game</button>
+    <button id="startbtn">Start Game</button>
+    <ul>
+
+<!-- this will be the area used for the questions -->
+
+    </ul>
+</main>
+
+<!-- ending screen -->
+<div id="sumbithighscores">
+    <h1>END OF QUIZ!!</h1>
+        <p>Total Score: <span id="totalscore">130</span></p>
+    <div id="highscoreinput">
+        <p>Enter Name:</p>
+        <input type="text" id="name" value="">
+        <button id="submithighscore">Submit Scores</button>
+    </div>
+</div>    
+
+<div id="viewhighscores">
+    <h1>Highscores</h1>
+    <ol>
+
+        <!-- filled in with javascript -->
+
+    </ol>
+    <!-- need a go back button -->
+    <!-- need a clear button as well -->
+    <button id="goback">Go Back</button>
+    <button id="clearhighscores">Clear Highscores</button>
+</div>
 
 
 
-<div></div>
-
-<div></div>
 
 <div ></div>
 
