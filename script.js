@@ -143,6 +143,36 @@ function createAnswers(startQuestions) {
         return;
 }
 
+// insert function that moves to the next question once an answer is clicked
+
 function gameOver() {
+    gameOver = true; 
+    score = timerCount;
+
+    //hide test elements
+
+    Timer.style.display = 'none';
+    answerBtns.style.display = 'none';
+    mainTitle.style.display = 'none';
+
+    totalScore.textContent = score;
+    document.querySelector("#submitHighscore").style.display = 'block';
+
+    return;
+}
+
+// click events
+function init() {
+startBtn.addEventListener('click', gameStart);
+answerBtns.addEventListener('click', nextQuestion);
+
+
+gameSet();
+
+return;
+
+}
+
+init();
 
 
