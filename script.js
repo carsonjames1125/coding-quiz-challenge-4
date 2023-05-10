@@ -90,6 +90,10 @@ function gameStart() {
     highscoresBtn.style.display = 'none';
     startBtn.style.display = 'none';
     document.querySelector('#instructions').style.display = 'none';
+    clearHighScoreBtn.style.display = 'none';
+    viewHighEnd.style.display = 'none';
+    answerBtns.style.display = 'block';
+
 
     // begin with first question
     showQuestions(questionNumber);
@@ -123,24 +127,24 @@ function timerStart() {
 
 function showQuestions(questionNumber) {
     mainTitle.textContent = questionsTest.questions[questionNumber];
-    createAnswers(questionNumber);
+    createAnswersEl(questionNumber);
 
     return;
 } //this functions pulls the questions and their respected answers and displays them in created elements for the answers pulling them from the array above. 
 
 // since i am create the elements for the answers, i need to generate a function that knows where to put these new elements
 
-function createAnswers(startQuestions) {
-    for (let answerNum = 0; answerNum < questionsTest.answers[startQuestions].length; answerNum++) { // loop function for each answer to display
+function createAnswersEl(questionNumber) {
+    for (let answerNum = 0; answerNum < questionsTest.answers[questionNumber].length; answerNum++) { // loop function for each answer to display
         var currentAnswerItem = document.createElement('li'); //creating 'li' for answers
-        var tempStr = questionsTest.answers[startQuestions][answerNum];
+        var stringList = questionsTest.answers[questionNumber][answerNum];
         //indicated the created 'li' variables are replacable
-        if (questionsTest.answers[startQuestions][answerNum].includes('rightanswer:')) {
-            tempStr = questionsTest.answers[startQuestions][answerNum].substring(8, questionsTest.answers[startQuestions][answerNum].length);
+        if (questionsTest.answers[questionNumber][answerNum].includes('rightanswer:')){
+            stringList = questionsTest.answers[questionNumber][answerNum].substring(8, questionsTest.answers[questionNumber][answerNum].length);
             currentAnswerItem.id = 'rightanswer';
         }
-        startQuestions.textContent = tempStr;
-        answerBtns.appendChild(currentAnswerItem); //creates the "li" elements from the answers array and appends them to the html in the "ul".
+        questionNumber.textContent = stringList;
+        answerBtns.appendChild(questionNumber); //creates the "li" elements from the answers array and appends them to the html in the "ul".
     }
         return;
 }
