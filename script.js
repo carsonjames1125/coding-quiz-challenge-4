@@ -7,11 +7,12 @@
 // 
 // html pieces that need to be used
 var highscoresBtn = document.querySelector('#viewhighscoresbtn');
-var Timer = document.querySelector('#timer');
+var timerTag = document.querySelector('#timer');
+var timeNum = document.querySelector('#time-left');
 var mainTitle = document.querySelector('#title-main');
 var Instructions = document.querySelector('#instructions');
 var startBtn = document.querySelector('#startbtn');
-var answerBtns = document.main.querySelector('ul');
+var answerBtns = document.body.querySelector('ul');
 var viewHighscores = document.querySelector('#submithighscores');
 var totalScore = document.querySelector('#totalscore');
 var highScore = document.querySelector('#highscoreinput');
@@ -48,7 +49,7 @@ var timerStart = 100; // sets the beginning timer to 100 sec
 // more game variables to help with functions
 
 var questionNumber = 0;
-var timerCount = timerBegin;
+var timerCount = timerStart;
 var score = 0;
 var gameOver = true;
 
@@ -58,7 +59,7 @@ function gameSet() {
     // need to start the timer as well
     timerCount = timerStart;
     mainTitle.textContent = "Coding Quiz: Javascript";
-    
+    timerTag.style.display = 'block', 'justify-content: right;'
     // initial usage of constant variables
     document.querySelector('#submithighscores').style.display = "none";
     document.querySelector('#highscoreinput').style.display = "none";
@@ -86,7 +87,6 @@ function gameStart() {
     // need to hide main menu items when the game starts
     document.querySelector('#submithighscores').style.display = "none";
     document.querySelector('#highscoreinput').style.display = "none";
-    mainTitle.style.display = 'none';
     highscoresBtn.style.display = 'none';
     startBtn.style.display = 'none';
     document.querySelector('#instructions').style.display = 'none';
@@ -102,7 +102,6 @@ function gameStart() {
 // begin the timer function that countsdown as the user initiate the game
 function timerStart() {
     var timeCountInit = setInterval(function () {
-
     if (gameOver === true) {
         clearInterval(timeCountInit);
         return;
@@ -113,8 +112,8 @@ function timerStart() {
         gameOver();
     }
 
-    Timer.textContent = timerStart; // resets timer once game ends and restarts after beginning
-    timerStart--; //decrease timer over game 
+    timerTag.textContent = timerCount; // resets timer once game ends and restarts after beginning
+    timerCount--; //decrease timer over game 
 },  1000); // note: 1000 ms = 1 s 
     return;
 
@@ -122,9 +121,9 @@ function timerStart() {
 
 // need a function to shwo the questions within the pages along with their respective answers and link a click events and create buttons for the answers. 
 
-function showQuestions(startQuestions) {
-    mainTitle.textContent = questionsTest.questions[startQuestions];
-    createAnswers(startQuestions);
+function showQuestions(questionNumber) {
+    mainTitle.textContent = questionsTest.questions[questionNumber];
+    createAnswers(questionNumber);
 
     return;
 } //this functions pulls the questions and their respected answers and displays them in created elements for the answers pulling them from the array above. 
@@ -134,10 +133,13 @@ function showQuestions(startQuestions) {
 function createAnswers(startQuestions) {
     for (let answerNum = 0; answerNum < questionsTest.answers[startQuestions].length; answerNum++) { // loop function for each answer to display
         var currentAnswerItem = document.createElement('li'); //creating 'li' for answers
-        var replaceString = questionsTest.answers[startQuestions][answerNum];
+        var tempStr = questionsTest.answers[startQuestions][answerNum];
         //indicated the created 'li' variables are replacable
-        if (questionsTest.answers[startQuestions][answerNum].includes('correctanswer')) {
+        if (questionsTest.answers[startQuestions][answerNum].includes('rightanswer:')) {
+            tempStr = questionsTest.answers[startQuestions][answerNum].substring(8, questionsTest.answers[startQuestions][answerNum].length);
+            currentAnswerItem.id = 'rightanswer';
         }
+        startQuestions.textContent = tempStr;
         answerBtns.appendChild(currentAnswerItem); //creates the "li" elements from the answers array and appends them to the html in the "ul".
     }
         return;
@@ -145,13 +147,24 @@ function createAnswers(startQuestions) {
 
 // insert function that moves to the next question once an answer is clicked
 
+function nextQuestion() { //if the system runs out of questions that means that the game is over
+    questionNumber ++;
+    if (questionNumber >= questionsTest.questions.length) {
+        gameOver();
+    }   else {
+        showQuestions(questionNumber); // if the system has more questions then the game must go on to the next question. 
+
+    }
+    return;
+}
+
 function gameOver() {
     gameOver = true; 
     score = timerCount;
 
     //hide test elements
 
-    Timer.style.display = 'none';
+    timerTag.style.display = 'none';
     answerBtns.style.display = 'none';
     mainTitle.style.display = 'none';
 
@@ -163,13 +176,13 @@ function gameOver() {
 
 // click events
 function init() {
-startBtn.addEventListener('click', gameStart);
-answerBtns.addEventListener('click', nextQuestion);
+    startBtn.addEventListener('click', gameStart);
+    answerBtns.addEventListener('click', nextQuestion);
 
 
-gameSet();
+    gameSet();
 
-return;
+    return;
 
 }
 
