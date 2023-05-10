@@ -132,7 +132,17 @@ function showQuestions(startQuestions) {
 // since i am create the elements for the answers, i need to generate a function that knows where to put these new elements
 
 function createAnswers(startQuestions) {
-
+    for (let answerNum = 0; answerNum < questionsTest.answers[startQuestions].length; answerNum++) { // loop function for each answer to display
+        var currentAnswerItem = document.createElement('li'); //creating 'li' for answers
+        var replaceString = questionsTest.answers[startQuestions][answerNum];
+        //indicated the created 'li' variables are replacable
+        if (questionsTest.answers[startQuestions][answerNum].includes('correctanswer')) {
+        }
+        answerBtns.appendChild(currentAnswerItem); //creates the "li" elements from the answers array and appends them to the html in the "ul".
+    }
+        return;
 }
+
+function gameOver() {}
 
 
