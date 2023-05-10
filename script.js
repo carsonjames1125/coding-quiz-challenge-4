@@ -7,7 +7,7 @@
 // 
 // html pieces that need to be used
 var highscoresBtn = document.querySelector('#viewhighscoresbtn');
-var timerTag = document.querySelector('#timer');
+var timerEl = document.querySelector('.div');
 var timeNum = document.querySelector('#time-left');
 var mainTitle = document.querySelector('#title-main');
 var Instructions = document.querySelector('#instructions');
@@ -61,7 +61,7 @@ function gameMain() {
     timerCountdown = timerBegin;
     timeNum.textContent = timerBegin; //forgot to add this so the timer knows what to countdon from
     mainTitle.textContent = "Coding Quiz: Javascript";
-    timerTag.style.display = 'block';
+    timerEl.textContent = timerBegin;
     timeNum.style.display = 'block', 'justify-content: center;'
     // initial usage of constant variables
     document.querySelector('#submithighscores').style.display = "none";
@@ -100,6 +100,7 @@ function gameStart() {
     clearHighScoreBtn.style.display = 'none';
     viewHighEnd.style.display = 'none';
     answerBtns.style.display = 'block';
+    timeNum.style.display = 'block';
 
 
     // begin with first question
@@ -122,6 +123,7 @@ function timerBegin() {
         gameOver();
     }
 
+    timeNum.style.display = 'block';
     timeNum.textContent = timerCountdown; // resets timer once game ends and restarts after beginning
     timerCountdown --; //decrease timer over game 
 },  1000); // note: 1000 ms = 1 s 
@@ -191,7 +193,7 @@ function gameOver() {
 }
 
 function highScores () {
-    if (questionNumber >= 6) {
+    if (questionNumber >= questionsTest.questions.length) {
         gameOver();
     } else {
         gameMain();
