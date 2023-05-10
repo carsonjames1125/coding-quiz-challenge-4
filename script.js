@@ -35,10 +35,10 @@ var questionsTest = {
     ],
     answers: [ // answers to the questions above the correct answer is displayed within the array. 
         ['style.css', 'rightanswer:script.jss', 'index.html', 'README.md'],
-        ['correctanwer:.alert', '.window', '.confirm', '.document'],
-        ['top of the document', 'In the CSS', 'in the javascript', 'correctanswer: at the bottom'],
-        ['.script', '.link', 'correctanswer: .text', '.val()'],
-        ['stop', 'correctanswer: not', 'go back', 'stop function']
+        ['rightanswer:.alert', '.window', '.confirm', '.document'],
+        ['top of the document', 'In the CSS', 'in the javascript', 'rightanswer:at the bottom'],
+        ['.script', '.link', 'rightanswer:.text', '.val()'],
+        ['stop', 'rightanswer:not', 'go back', 'stop function']
     ]
 }
 
@@ -52,10 +52,11 @@ var questionNumber = 0;
 var timerCount = timerStart;
 var score = 0;
 var gameOver = true;
+var answerNumber = 0;
 
 // need to begin the functions and setup of the game including the dispaly of the main menu for the game. 
 
-function gameSet() {
+function gameMain() {
     // need to start the timer as well
     timerCount = timerStart;
     mainTitle.textContent = "Coding Quiz: Javascript";
@@ -135,16 +136,19 @@ function showQuestions(questionNumber) {
 // since i am create the elements for the answers, i need to generate a function that knows where to put these new elements
 
 function createAnswersEl(questionNumber) {
+    answerBtns.innerHTML = '';
+    
     for (let answerNum = 0; answerNum < questionsTest.answers[questionNumber].length; answerNum++) { // loop function for each answer to display
         var currentAnswerItem = document.createElement('li'); //creating 'li' for answers
         var stringList = questionsTest.answers[questionNumber][answerNum];
         //indicated the created 'li' variables are replacable
         if (questionsTest.answers[questionNumber][answerNum].includes('rightanswer:')){
-            stringList = questionsTest.answers[questionNumber][answerNum].substring(8, questionsTest.answers[questionNumber][answerNum].length);
-            currentAnswerItem.id = 'rightanswer';
+            stringList = questionsTest.answers[questionNumber][answerNum].substring(12, questionsTest.answers[questionNumber][answerNum].length); //this shows where the string is supposed to start and then take the removed 'rightanswer' from the string and create an html id for it. 
+            currentAnswerItem.id = 'rightanswer:';
         }
-        questionNumber.textContent = stringList;
-        answerBtns.appendChild(questionNumber); //creates the "li" elements from the answers array and appends them to the html in the "ul".
+        currentAnswerItem.textContent = stringList;
+        answerBtns.appendChild(currentAnswerItem);
+         //creates the "li" elements from the answers array and appends them to the html in the "ul".
     }
         return;
 }
@@ -184,7 +188,7 @@ function init() {
     answerBtns.addEventListener('click', nextQuestion);
 
 
-    gameSet();
+    gameMain();
 
     return;
 
