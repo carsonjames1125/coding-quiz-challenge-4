@@ -53,7 +53,7 @@ var gameOver = true;
 
 // need to begin the functions and setup of the game including the dispaly of the main menu for the game. 
 
-function gameset() {
+function gameSet() {
     // need to start the timer as well
     timerCount = timerStart;
     mainTitle.textContent = "Coding Quiz: Javascript";
@@ -67,11 +67,40 @@ function gameset() {
 
     // display styles for the main menu
     mainTitle.style.display = "block";
-    document.querySelector('#instructions'),style.display = "block";
+    document.querySelector('#instructions').style.display = "block";
     highscoresBtn.style.display = "block";
     startBtn.style.display = "block";
 
     return;
 }
 
+// starting of the game
 
+function gameStart() {
+
+    // need to tell the game that the gameOver variable is false so the game knows to begin
+    gameOver = false;
+    questionNumber = 0;
+
+    // need to hide main menu items when the game starts
+    document.querySelector('#submithighscores').style.display = "none";
+    document.querySelector('#highscoreinput').style.display = "none";
+    mainTitle.style.display = 'none';
+    highscoresBtn.style.display = 'none';
+    startBtn.style.display = 'none';
+    document.querySelector('#instructions').style.display = 'none';
+
+    // begin with first question
+    questionsTest(questionNumber);
+    timerStart();
+
+    return;
+
+}
+
+// begin the timer function that countsdown as the user initiate the game
+function timerStart() {
+    var timeCountInit = setInterval(function () {
+    if (gameOver === true)        
+    })
+}
