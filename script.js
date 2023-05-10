@@ -27,11 +27,11 @@ var endBackBtns = document.querySelector('.endBtns');
 
 var questionsTest = {
     questions: [ //questions for the quix that are to be display in order.
-        'Which document type is used to give logic to a webpage?',
-        'What is the syntax called in javascript that displays a pop up in the browser about an error or notification?',
-        'Where are you supposed to reference javascript in the HTML document?',
-        'What syntax is used to create text in javascript that displays in the webpage?',
-        'What does ! mean in javascript?',
+        '1. Which document type is used to give logic to a webpage?',
+        '2. What is the syntax called in javascript that displays a pop up in the browser about an error or notification?',
+        '3. Where are you supposed to reference javascript in the HTML document?',
+        '4. What syntax is used to create text in javascript that displays in the webpage?',
+        '5. What does ! mean in javascript?',
     ],
     answers: [ // answers to the questions above the correct answer is displayed within the array. 
         ['style.css', 'rightanswer:script.jss', 'index.html', 'README.md'],
@@ -66,6 +66,9 @@ function gameMain() {
     // initial usage of constant variables
     document.querySelector('#submithighscores').style.display = "none";
     document.querySelector('#highscoreinput').style.display = "none";
+    answerBtns.style.display = 'none';
+    clearHighScoreBtn.style.display = 'none';
+    viewHighEnd.style.display = 'none';
     
     
     document.querySelector('.endBtns').style.display = "none";
@@ -177,20 +180,30 @@ function gameOver() {
     timerTag.style.display = 'none';
     answerBtns.style.display = 'none';
     mainTitle.style.display = 'none';
-    answerBtns.innerHTML = '';
+    answerBtns.innerHTML.style.display = 'none';
+
 
     totalScore.textContent = score;
     document.querySelector("#submitHighscore").style.display = 'block';
+    //document.createElement('<h1>GAME OVER</h1>');
 
     return;
+}
+
+function highScores () {
+    if (questionNumber >= 6) {
+        gameOver();
+    } else {
+        gameMain();
+    }
 }
 
 // click events
 function init() {
     startBtn.addEventListener('click', gameStart);
     answerBtns.addEventListener('click', nextQuestion);
-
-
+    //viewHighEnd.addEventListener('click', localStorage);
+    //gobackBtn.addEventListener('click', reload());
     gameMain();
 
     return;

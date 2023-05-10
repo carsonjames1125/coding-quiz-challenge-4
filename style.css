@@ -20,7 +20,7 @@ header div {
     text-align: right;
 }
 
-button {
+main button {
     color: blue;
     background-color: beige;
     display:block;
@@ -29,7 +29,13 @@ button {
     justify-content: center;
     width: max-content;
     cursor: pointer;
+    margin-left: 515px;
+    width: 25%;
+    height: 50px;
+}
 
+main button:hover {
+    background-color: grey;
 }
 
 main {
@@ -43,19 +49,29 @@ main {
     padding: 55px;
 
 }
-
-main button {
+main p {
     display: flex;
-    float:right;
-    justify-items: center;
     flex-wrap: wrap;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 350px;
+    padding: 55px;
+    border-style: solid;
+    border-color: black;
+    border-width: 10px;
+}
+
+main > button {
     color:red;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     background-color: blue; 
+    justify-content: stretch;
+    align-self: self;
 }
 
-ul {
+main ul {
     background-color: rgb(249, 249, 252);
     color: rgb(251, 249, 249);
     list-style-type:lower-roman;
@@ -67,7 +83,7 @@ ul {
     justify-content: space-between;
 }
 
-li {
+main ul li {
     padding: 10px;
     border-style: solid;
     border-color:black;
