@@ -19,6 +19,7 @@ var submitBtn = document.querySelector('#submithighscore');
 var viewHighEnd = document.querySelector('#viewhighscores');
 var gobackBtn = document.querySelector('#goback');
 var clearHighScoreBtn = document.querySelector('#clearhighscores');
+var endBackBtns = document.querySelector('.endBtns');
 
 // generate questions for quiz
 
@@ -41,7 +42,7 @@ var questionsTest = {
 
 // need to begin the game setup and varibale identification
 
-var timerBegin = 100; // sets the beginning timer to 100 sec
+var timerStart = 100; // sets the beginning timer to 100 sec
 
 // more game variables to help with functions
 
@@ -50,4 +51,27 @@ var timerCount = timerBegin;
 var score = 0;
 var gameOver = true;
 
-// need to begin the functions of the game. 
+// need to begin the functions and setup of the game including the dispaly of the main menu for the game. 
+
+function gameset() {
+    // need to start the timer as well
+    timerCount = timerStart;
+    mainTitle.textContent = "Coding Quiz: Javascript";
+    
+    // initial usage of constant variables
+    document.querySelector('#submithighscores').style.display = "none";
+    document.querySelector('#highscoreinput').style.display = "none";
+    
+    document.querySelector('.endBtns').style.display = "none";
+    // variables that need to be hidden on the main page of the game
+
+    // display styles for the main menu
+    mainTitle.style.display = "block";
+    document.querySelector('#instructions'),style.display = "block";
+    highscoresBtn.style.display = "block";
+    startBtn.style.display = "block";
+
+    return;
+}
+
+
