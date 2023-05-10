@@ -11,6 +11,7 @@ var Timer = document.querySelector('#timer');
 var mainTitle = document.querySelector('#title-main');
 var Instructions = document.querySelector('#instructions');
 var startBtn = document.querySelector('#startbtn');
+var answerBtns = document.main.querySelector('ul');
 var viewHighscores = document.querySelector('#submithighscores');
 var totalScore = document.querySelector('#totalscore');
 var highScore = document.querySelector('#highscoreinput');
@@ -91,7 +92,7 @@ function gameStart() {
     document.querySelector('#instructions').style.display = 'none';
 
     // begin with first question
-    questionsTest(questionNumber);
+    showQuestions(questionNumber);
     timerStart();
 
     return;
@@ -101,6 +102,37 @@ function gameStart() {
 // begin the timer function that countsdown as the user initiate the game
 function timerStart() {
     var timeCountInit = setInterval(function () {
-    if (gameOver === true)        
-    })
+
+    if (gameOver === true) {
+        clearInterval(timeCountInit);
+        return;
+    }       
+
+    if (timerCount < 1) {
+        clearInterval(timeCountInit);
+        gameOver();
+    }
+
+    Timer.textContent = timerStart; // resets timer once game ends and restarts after beginning
+    timerStart--; //decrease timer over game 
+},  1000); // note: 1000 ms = 1 s 
+    return;
+
 }
+
+// need a function to shwo the questions within the pages along with their respective answers and link a click events and create buttons for the answers. 
+
+function showQuestions(startQuestions) {
+    mainTitle.textContent = questionsTest.questions[startQuestions];
+    createAnswers(startQuestions);
+
+    return;
+} //this functions pulls the questions and their respected answers and displays them in created elements for the answers pulling them from the array above. 
+
+// since i am create the elements for the answers, i need to generate a function that knows where to put these new elements
+
+function createAnswers(startQuestions) {
+
+}
+
+
