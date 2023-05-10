@@ -143,6 +143,6 @@ function createAnswers(startQuestions) {
         return;
 }
 
-function gameOver() {}
+function gameOver() {
 
 
