@@ -44,12 +44,12 @@ var questionsTest = {
 
 // need to begin the game setup and varibale identification
 
-var timerStart = 100; // sets the beginning timer to 100 sec
+var timerBegin = 100; // sets the beginning timer to 100 sec
 
 // more game variables to help with functions
 
 var questionNumber = 0;
-var timerCount = timerStart;
+var timerCountdown = timerBegin;
 var score = 0;
 var gameOver = true;
 var answerNumber = 0;
@@ -58,12 +58,15 @@ var answerNumber = 0;
 
 function gameMain() {
     // need to start the timer as well
-    timerCount = timerStart;
+    timerCountdown = timerBegin;
+    timeNum.textContent = timerBegin; //forgot to add this so the timer knows what to countdon from
     mainTitle.textContent = "Coding Quiz: Javascript";
-    timerTag.style.display = 'block', 'justify-content: right;'
+    timerTag.style.display = 'block';
+    timeNum.style.display = 'block', 'justify-content: center;'
     // initial usage of constant variables
     document.querySelector('#submithighscores').style.display = "none";
     document.querySelector('#highscoreinput').style.display = "none";
+    
     
     document.querySelector('.endBtns').style.display = "none";
     // variables that need to be hidden on the main page of the game
@@ -98,30 +101,29 @@ function gameStart() {
 
     // begin with first question
     showQuestions(questionNumber);
-    timerStart();
+    timerBegin();
 
     return;
 
 }
 
 // begin the timer function that countsdown as the user initiate the game
-function timerStart() {
-    var timeCountInit = setInterval(function () {
+function timerBegin() {
+    var timeCountInit = setInterval(function() {
     if (gameOver === true) {
         clearInterval(timeCountInit);
         return;
     }       
-
-    if (timerCount < 1) {
+    if (timerCountdown < 1) {
         clearInterval(timeCountInit);
         gameOver();
     }
 
-    timerTag.textContent = timerCount; // resets timer once game ends and restarts after beginning
-    timerCount--; //decrease timer over game 
+    timeNum.textContent = timerCountdown; // resets timer once game ends and restarts after beginning
+    timerCountdown --; //decrease timer over game 
 },  1000); // note: 1000 ms = 1 s 
-    return;
 
+    return;
 }
 
 // need a function to shwo the questions within the pages along with their respective answers and link a click events and create buttons for the answers. 
@@ -168,13 +170,14 @@ function nextQuestion() { //if the system runs out of questions that means that 
 
 function gameOver() {
     gameOver = true; 
-    score = timerCount;
+    score = timerCountdown;
 
     //hide test elements
 
     timerTag.style.display = 'none';
     answerBtns.style.display = 'none';
     mainTitle.style.display = 'none';
+    answerBtns.innerHTML = '';
 
     totalScore.textContent = score;
     document.querySelector("#submitHighscore").style.display = 'block';

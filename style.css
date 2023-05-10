@@ -1,0 +1,82 @@
+body {
+    background-color:Beige;
+}
+
+header {
+    color: yellow;
+    background-color: yellow;
+}
+
+#viewhighscoresbtn {
+    justify-content: left;
+
+}
+header button {
+    float: right;
+}
+header div {
+    display: flex;
+    justify-content: right;
+    text-align: right;
+}
+
+button {
+    color: blue;
+    background-color: beige;
+    display:block;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: max-content;
+    cursor: pointer;
+
+}
+
+main {
+    text-align: center;
+    color: rgb(253, 253, 254);
+    background-color: red;
+    text-decoration: solid;
+    text-decoration-style: solid;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 55px;
+
+}
+
+main button {
+    display: flex;
+    float:right;
+    justify-items: center;
+    flex-wrap: wrap;
+    color:red;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    background-color: blue; 
+}
+
+ul {
+    background-color: rgb(249, 249, 252);
+    color: rgb(251, 249, 249);
+    list-style-type:lower-roman;
+    text-align: center;
+    display: block;
+    padding: 35px;
+    margin-top: ;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+li {
+    padding: 10px;
+    border-style: solid;
+    border-color:black;
+    border-radius: 5px;
+    background-color: rgb(193, 250, 6);
+    color: black;
+
+}
+
+li:hover {
+    background-color: grey;
+}
