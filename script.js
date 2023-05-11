@@ -7,8 +7,7 @@
 // 
 // html pieces that need to be used
 var highscoresBtn = document.querySelector('#viewhighscoresbtn');
-var timerEl = document.querySelector('.div');
-var timeNum = document.querySelector('#time-left');
+var timerEl = document.getElementById('TIMER');
 var mainTitle = document.querySelector('#title-main');
 var Instructions = document.querySelector('#instructions');
 var startBtn = document.querySelector('#startbtn');
@@ -44,25 +43,26 @@ var questionsTest = {
 
 // need to begin the game setup and varibale identification
 
-var timerBegin = 100; // sets the beginning timer to 100 sec
+var timeLeft = 100; // sets the beginning timer to 100 sec
 
 // more game variables to help with functions
 
 var questionNumber = 0;
-var timerCountdown = timerBegin;
+var timerCountdown = timeLeft;
 var score = 0;
 var gameOver = true;
 var answerNumber = 0;
+var timerId = setInterval(countdown, 1000);
 
 // need to begin the functions and setup of the game including the dispaly of the main menu for the game. 
 
 function gameMain() {
     // need to start the timer as well
-    timerCountdown = timerBegin;
-    timeNum.textContent = timerBegin; //forgot to add this so the timer knows what to countdon from
+    timerCountdown = timeLeft;
+    timerEl.textContent = timeLeft; //forgot to add this so the timer knows what to countdon from
     mainTitle.textContent = "Coding Quiz: Javascript";
-    timerEl.textContent = timerBegin;
-    timeNum.style.display = 'block', 'justify-content: center;'
+    timerEl.textContent = timeLeft;
+    timerEl.style.display = 'block', 'justify-content: center;'
     // initial usage of constant variables
     document.querySelector('#submithighscores').style.display = "none";
     document.querySelector('#highscoreinput').style.display = "none";
@@ -100,43 +100,31 @@ function gameStart() {
     clearHighScoreBtn.style.display = 'none';
     viewHighEnd.style.display = 'none';
     answerBtns.style.display = 'block';
-    timeNum.style.display = 'block';
+    timerEl.style.display = 'block';
 
 
     // begin with first question
     showQuestions(questionNumber);
-    timerBegin();
+    countdown();
 
     return;
 
 }
-
 // begin the timer function that countsdown as the user initiate the game
-function timerBegin() {
-    var timeCountInit = setInterval(function() {
-    if (gameOver === true) {
-        clearInterval(timeCountInit);
-        return;
-    }       
-    if (timerCountdown < 1) {
-        clearInterval(timeCountInit);
-        gameOver();
-    }
-
-    timeNum.style.display = 'block';
-    timeNum.textContent = timerCountdown; // resets timer once game ends and restarts after beginning
-    timerCountdown --; //decrease timer over game 
-},  1000); // note: 1000 ms = 1 s 
-
-    return;
-}
-
-// need a function to shwo the questions within the pages along with their respective answers and link a click events and create buttons for the answers. 
+var timeCountdown = setInterval(countdown, 1000);
+function countdown() {
+        if (timeLeft = 0) {
+            clearInterval(timeCountdown);
+            gameOver();
+        } else {
+            Element.innerHTML = timeLeft + ' seconds remaining';
+            timeLeft --;
+        } 
+    } 
 
 function showQuestions(questionNumber) {
     mainTitle.textContent = questionsTest.questions[questionNumber];
     createAnswersEl(questionNumber);
-
     return;
 } //this functions pulls the questions and their respected answers and displays them in created elements for the answers pulling them from the array above. 
 
@@ -179,7 +167,7 @@ function gameOver() {
 
     //hide test elements
 
-    timerTag.style.display = 'none';
+    timerEl.style.display = 'none';
     answerBtns.style.display = 'none';
     mainTitle.style.display = 'none';
     answerBtns.innerHTML.style.display = 'none';
@@ -198,8 +186,8 @@ function highScores () {
     } else {
         gameMain();
     }
+    return;
 }
-
 // click events
 function init() {
     startBtn.addEventListener('click', gameStart);
@@ -207,11 +195,8 @@ function init() {
     //viewHighEnd.addEventListener('click', localStorage);
     //gobackBtn.addEventListener('click', reload());
     gameMain();
-
     return;
-
 }
 
+
 init();
-
-
